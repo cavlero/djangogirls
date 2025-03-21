@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% extends "base.html" %}
+  {% load static %}
+  {% block head %}
+<title>Home - TasteScape</title>
+{% endblock %}
+<body>
+
+<!--  Header  -->
+{% block header %}
+{% endblock %}
+
+  <!-- Introduction + Get started  -->
+  {% block content %}
+  <section id="hero">
+    <div class="hero-container" data-aos="fade-up">
+      <h1>Introducing TasteScape Project</h1>
+      <h2>Reducing food waste, one meal at a time.</h2>
+      <a href="{% url 'demo' %}" class="btn-get-started" scrollto>Try it out</a>
+    </div>
+  </section>
+
+  <main id="main">
+
+    <!-- Overview short -->
+    <section id="overview" class="overview">
+      <div class="container">
+        <div class="row justify-content-end">
+          <div class="col-lg-11">
+            <div class="row justify-content-end">
+
+              <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
+                <div class="count-box py-5">
+                  <i class="bi bi-pc-display"></i>
+                  <span data-purecounter-start="0" data-purecounter-end="8186" class="purecounter" data-purecounter-separator=1></span>
+                  <p>Images Processed</p>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
+                <div class="count-box py-5">
+                  <i class="bi bi-camera"></i>
+                  <span data-purecounter-start="0" data-purecounter-end="{{predictions}}" class="purecounter" data-purecounter-separator=1></span>
+                  <p>Predictions Made</p>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
+                <div class="count-box py-5">
+                  <i class="bi bi-book"></i>
+                  <span data-purecounter-start="0" data-purecounter-end={{recipe_amt}} class="purecounter" data-purecounter-separator=1></span>
+                  <p>Recipes to discover</p>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
+                <div class="count-box pb-5 pt-0 pt-lg-5">
+                  <i class="bi bi-person-arms-up"></i>
+                  <span data-purecounter-start="0" data-purecounter-end="8" class="purecounter"data-purecounter-separator=1>0</span>
+                  <p>SDGs being supported</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+       <div class="col-lg-12 pt-3 pt-lg-0 content text-center">
+            <h3>Using AI Technologies to reduce food waste.</h3>
+            <p class="fst-italic">
+              Introducing the TasteScape tool to reduce food waste by implementing smart Computer Vision techniques. The tool analyzes pictures, detects vegetables and fruits, then recommends recipes where these ingredients are used.
+            </p>
+            <ul>
+            </ul>
+       </div>
+      </div>
+    </section>
+{% endblock %}
+
+<!-- Footer -->
+{% block footer %}
+{% endblock %}
+
+<!-- JS files -->
+{% block scripts %}
+{% endblock %}
+
+</body>
+
+
+
+

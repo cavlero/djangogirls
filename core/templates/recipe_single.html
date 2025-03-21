@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% extends "base.html" %}
+{% load static %}
+{% block head %}
+<title>{{recipe.recipe_title}} - TasteScape</title>
+
+{% endblock %}
+
+<body>
+{% block header %}
+{% endblock %}
+
+{% block content %}
+  <main id="main">
+
+    <!--  banner  -->
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+        <ol>
+        </ol>
+      </div>
+    </section>
+
+    <!--  Recipe Section  -->
+    <section id="blog" class="blog">
+      <div class="container" data-aos="fade-up">
+        <div class="row">
+          <div class="col-lg-8 entries">
+            <article class="entry entry-single">
+
+              <div class="entry-img">
+                <img src={{recipe.image}} class="img-fluid" alt="">
+              </div>
+
+              <h2 class="entry-title">
+                <a>{{  recipe.recipe_title  }}</a>
+              </h2>
+
+              <div class="entry-meta">
+                <ul>
+                  <li class="d-flex align-items-center"><i class="bi bi-person-circle"></i> <a>{{  recipe.author }}</a></li>
+                  {% if recipe.total_time != None %}
+                  <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a>{{ recipe.total_time }}</a></li>
+                  {% endif %}
+                  <li class="d-flex align-items-center"><i class="bi bi-people"></i> <a>{{ recipe.recipe_yield }}</a></li>
+                  {% if recipe.rating > 0 %}
+                  {% if recipe.rating == 1 %}
+                  <li class="d-flex align-items-center"><i class="bi bi-star"></i> <a>Rated {{ recipe.rating }} star</a></li>
+                  {% else %}
+                  <li class="d-flex align-items-center"><i class="bi bi-star"></i> <a>Rated {{ recipe.rating }} stars</a></li>
+                  {% endif %}
+                  {% endif %}
+                </ul>
+              </div>
+
+              <div class="entry-content">
+                <p>
+                    {{ recipe.description }}
+                </p>
+            
+                {% if steps_list %}
+                    {% for value in steps_list %}
+                        {% if value != None %}
+                        <h3>Step {{ forloop.counter }}</h3> 
+                        <p>{{ value }}</p>
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <p>No steps available.</p>
+                {% endif %}
+            </div>
+            </article>
+          </div>
+          <div class="col-lg-4">
+            <div class="sidebar">
+              <h3 class="sidebar-title">Ingredients</h3>
+              <div class="sidebar-item categories">
+                <ul>
+                  {% for value in ingredients_list %}
+                    {% if value != None %}
+                      {%if value is not integer %}
+                       {% if value is not float %}
+                        <li>{{ value }}</li>
+                        {% endif %}
+                      {% endif %}
+                    {% endif %}
+                  {% endfor %}
+                </ul>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </section>
+
+  </main>
+{% endblock %}
+
+  {% block footer %}
+  {% endblock %}
+  
+  {% block scripts %}
+  {% endblock %}  
+
+</body>
+
+</html>

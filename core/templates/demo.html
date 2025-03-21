@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+<title>Demo - TasteScape</title>
+{% endblock %}
+
+<body>
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+
+<main id="main">
+  <section id="breadcrumbs" class="breadcrumbs">
+    <div class="breadcrumb-hero">
+      <div class="container">
+        <div class="breadcrumb-hero">
+          <h2>TasteScape Demo</h2>
+          <p>Upload an image or search by using the search engine</p>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <ol></ol>
+    </div>
+  </section>
+
+    <!-- ======= Work Process Section ======= -->
+    <section id="work-process" class="work-process">
+      <div class="container">
+    
+        <div class="section-title" data-aos="fade-up">
+          <h2>Enter Ingredients</h2>
+          <p>Separate multiple ingredients by using a comma.</p>
+          <ul></ul>
+          <form style="display: inline;" action="{% url 'submit_search' %}" method="post" name="search">
+            {% csrf_token %}
+            
+            <!-- Manually render the search input -->
+            <input type="text" name="search" value="{{ request.POST.search }}">
+            
+            <button type="submit"><i class="bi bi-search"></i></button>
+        </form>
+        </div>
+
+    
+        <div class="row content">
+        </div>
+    
+        <div class="row content">
+          <div class="col-md-5 order-1 order-md-2" data-aos="fade-left">
+            <img src="static/img/demo_1.png" class="img-fluid" alt="">
+          </div>
+          <div class="col-md-7 pt-5 order-2 order-md-1" data-aos="fade-right">
+            <form class="sidebar-item search-form" method="post" enctype="multipart/form-data" name="form1">
+              {% csrf_token %}
+              <h3>Upload image to analyze</h3>
+              <p>
+                <details style="margin-left:20px;">
+                  <summary><b>Instructions</b></summary>
+                  <li>Take an image of your leftover vegetables and fruits. Make sure the 
+                  ingredients are separated from each other and the lighting is good.</li>
+                  <li>Upload the image using the button above, then press 'Upload'.</li>
+                  <li>Results will be available below after processing.</li>
+                  <li>By using the button 'Search with detected ingredients', 
+                  you can find recipes based on the detected ingredients.</li>
+                </details>
+              </p>
+              <input type="file" name="file" class="col-md-7 pt-4" id="inputfile" style="margin-left:20px;">
+              <button class='upload-button' role='button' type="submit" id="uploadButton" style="display: none;">Upload</button>
+    
+            </form>
+            <!-- Only show 'UPLOAD' button when file is loaded-->
+            <script>
+              document.getElementById('inputfile').addEventListener('change', function() {
+                var fileInput = document.getElementById('inputfile');
+                var uploadButton = document.getElementById('uploadButton');
+            
+                if (fileInput.files.length > 0) {
+                  uploadButton.style.display = 'inline'; 
+                } else {
+                  uploadButton.style.display = 'none'; 
+                }
+              });
+            </script>
+            
+            <p class="fst-italic">Powered by YOLOv8 and PyTorch. Currently supporting PNG and JPG files.</p>
+
+            {% if inf_time != None and pp_time != None %}
+            <p>
+              Preprocessing time: {{pre_time}} ms.
+              Inference time: {{inf_time}} ms.
+              Postprocessing time: {{pos_time}} ms.
+            </p>
+            {% endif %}
+    
+          </div>
+        </div>
+      </div>
+    </section>
+    
+
+      <!-- Show Image Section-->
+      <a id="uploadAnchor"></a>
+      <section id="skills" class="skills section-bg">
+        <div class="container">
+          <div class="row">
+          {% if filename == None %}
+            <h3 class="col-md-7 pt-7">Showcase Example</h3>
+            <div class="col-lg-6" data-aos="fade-right">
+              <img src="static/img/yolo_placeholder.jpg" alt="" width="500">
+            </div>
+            <div class="col-lg-6 pt-4 pt-lg-0 content" data-aos="fade-left">
+              <h3>Detected Ingredients and Confidence</h3>
+              <div class="skills-content">
+                {% for class, conf_score in zipped_data %}
+                <div class="progress">
+                  <span class="skill">{{ class }} <i class="val">{{ conf_score }}%</i></span>
+                  <div class="progress-bar" role="progressbar" aria-valuenow="{{ conf_score }}" aria-valuemin="0" aria-valuemax="100" style="width:{{ conf_score }}%"></div>
+                </div>
+              {% endfor %}
+              <ul></ul>
+
+              <button onclick='submitSearch()' class='upload-button' role='button' action="{% url 'submit_search' %}">Search with Detected Ingredients</button>
+              
+              <form id="searchForm" action="{% url 'search' %}" method="get" style="display: none;">
+                <input type="hidden" id="search" name="q" value="{{ unique_classes }}">
+              </form>
+  
+              <script>
+                  function submitSearch() {
+                      var defaultSearchTerm = "{{ unique_classes }}";
+                      document.getElementById("search").value = defaultSearchTerm;
+                      document.getElementById("searchForm").submit()}
+              </script> 
+
+          {% else %}
+            <h3 class="col-md-7 pt-7">Prediction results</h3>
+            <div class="col-lg-6" data-aos="fade-right">
+              <img class='upload-img' src="{% url 'get_image' filename=filename %}" alt="">            
+            </div>
+            <div class="col-lg-6 pt-4 pt-lg-0 content" data-aos="fade-left">
+              <h3>Detected Ingredients and Confidence</h3>
+              <div class="skills-content">
+                {% for class, conf_score in zipped_data %}
+                <div class="progress">
+                  <span class="skill">{{ class }} <i class="val">{{ conf_score }}%</i></span>
+                  <div class="progress-bar" role="progressbar" aria-valuenow="{{ conf_score }}" aria-valuemin="0" aria-valuemax="100" style="width:{{ conf_score }}%"></div>
+                </div>
+              {% endfor %}
+                <ul></ul>
+                <button onclick='submitSearch()' class='upload-button' role='button' action="{% url 'submit_search' %}">Search with Detected Ingredients</button>
+              
+                <form id="searchForm" action="{% url 'search' %}" method="get" style="display: none;">
+                  <input type="hidden" id="search" name="q" value="{{ unique_classes }}">
+                </form>
+    
+                <script>
+                    function submitSearch() {
+                        var defaultSearchTerm = "{{ unique_classes }}";
+                        document.getElementById("search").value = defaultSearchTerm;
+                        document.getElementById("searchForm").submit()}
+                </script> 
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>     
+      
+  </main>
+  {% endblock %}
+  <!-- Footer  -->
+  {% block footer %}
+  {% endblock %}
+
+  {% block scripts %}
+  {% endblock %}
+</body>
+
+</html>

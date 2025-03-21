@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% extends "base.html" %}
+  {% load static %}
+
+{% block head %}
+<title>About - TasteScape</title>
+{% endblock %}
+
+<body>
+  {% block header %}
+  {% endblock %}
+  
+  {% block content %}
+  <main id="main">
+
+  <!--  Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="breadcrumb-hero">
+        <div class="container">
+          <div class="breadcrumb-hero">
+            <h2>About TasteScape Project</h2>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <ol></ol>
+      </div>
+    </section>
+
+    <!-- Problem + Model Summary -->
+    <section id="work-process" class="work-process">
+      <div class="container">
+
+        <div class="section-title" data-aos="fade-up">
+          <h2>Food Waste Overview</h2>
+          <p>Metrics have been provided by voedingscentrum.nl (Netherlands Nutrition Centre)</p>
+        </div>
+
+        <div class="row content"></div>
+
+        <div class="row content">
+          <div class="col-md-5 order-1 order-md-2" data-aos="fade-left">
+            <img src="static/img/waste_graph.png" class="img-fluid" alt="">
+          </div>
+          <div class="col-md-7 pt-5 order-2 order-md-1" data-aos="fade-right">
+            <h3>Problem Context</h3>
+            <p class="fst-italic">
+              Consumers play a significant role in generating food waste, accounting for a 
+              substantial share in total food waste, ranging between 23% and 32%. Addressing this issue calls for solutions 
+              that resonate with consumers, enabling them to alter their behaviors.
+            </p>
+            <p>
+              In the Netherlands, approximately 80% of individuals express willingness to reduce their food waste. 
+              Coupled with the fact that most households frequent supermarkets <b>2-3 times a week</b>, there's a 
+              clear opportunity to develop a tool that assists in meal planning while being sustainable.
+            </p>
+
+            <p>
+              In the graph, we can see a total amount of <b>34.3 kg per person per year</b> is wasted. The combination of
+              fruits and vegetables takes up a significant portion of 6.7 kg per person per year, or nearly 20% of 
+              the total food waste.
+            </p>
+          </div>
+        </div>
+
+        <div class="row content">
+          <div class="col-md-5" data-aos="fade-right">
+            <img src="static/img/about_1.png" class="img-fluid" alt="">
+          </div>
+          <div class="col-md-7 pt-5" data-aos="fade-left">
+            <h3>Methods to reduce food waste</h3>
+            <p>The Dutch Nutrition Centre emphasizes these methods to reduce food waste for consumers and households.
+            </p>
+            <ul>
+              <li><i class="bi bi-dot"></i>Make a shopping list. This can account for a great reduction in food waste.</li>
+              <li><i class="bi bi-dot"></i>Prepare the right amount of food by measuring the ingredients.</li>
+              <li><i class="bi bi-dot"></i>Understand the importance of looking, smelling and tasting before throwing out products.</li>
+              <li><i class="bi bi-dot"></i>Be informed about correct storage methods.</li>
+              <li><i class="bi bi-dot"></i><b>Increase food skills by preparing meals using leftover products.</b></li>
+              </p>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row content">
+          <div class="col-md-5 order-1 order-md-2" data-aos="fade-left">
+            <img src="static/img/about_sdg.png" class="img-fluid" alt="">
+          </div>
+          <div class="col-md-7 pt-5 order-2 order-md-1" data-aos="fade-right">
+            <h3>Sustainable Development Goals (SDGs)</h3>
+            <p class="fst-italic">
+              The reduction of food waste works to directly affect the <b>SDG Goal 12</b>. Goal 12 aims to "ensure
+              sustainable consumption and production patterns." 
+            </p>
+            <p>
+              With food waste being a large contributor to the global waste problem, SDG 12.3 states: “halve per capita global food waste at the retail and 
+              consumer level, and reduce food losses along production and supply chains by 2030”.
+            </p>
+            <p style="margin-bottom:20px;">By a cascading effect, reducing food waste will also affect 8 other different goals, as seen in the image.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Instructions -->
+    <section id="work-process" class="work-process">
+      
+      <div class="container">
+
+        <div class="section-title" data-aos="fade-up">
+          <h2>Usage Instructions</h2>
+          <p>Please refer to this for proper usage of the tool.</p>
+        </div>
+
+        <div class="row content"></div>
+        <div class="row content">
+          <div class="col-md-5" data-aos="fade-right">
+            <img src="static/img/about_instr.png" class="img-fluid" alt="">
+          </div>
+          <div class="col-md-7 pt-5" data-aos="fade-left">
+            <h3>Search Engine and Image Detection</h3>
+            <p>The search function can be used to search for any type of ingredient. When searching for multiple ingredients, 
+              make sure to seperate them with a comma followed by a space. For example: 'thyme, onion, egg'. The search function can 
+              accept an infinite amount of ingredients.
+            </p>
+            <p>
+              For the image detection tool, instructions are available at the 'demo' page. 
+              The detection model accepts PNG and JPG file formats. The tool performs best when ingredients are seperated from eachother, without overlapping.
+            </p>
+          </div>
+        </div>
+      </section>
+    <!-- Model Summary -->  
+    <section id="work-process" class="work-process">
+      <div class="container">
+  
+        <div class="section-title" data-aos="fade-up">
+          <h2>Model Summary</h2>
+          <p>A custom YOLOv8 model has been trained and implemented. Key performance metrics are available below.</p>
+        </div>
+  
+        <div class="row content"></div>
+  
+          <div class="row content">
+            <div class="col-md-5 order-1 order-md-2" data-aos="fade-left">
+              <img src="static/img/yolov8.png" class="img-fluid" alt="">
+            </div>
+            <div class="col-md-7 pt-5 order-2 order-md-1" data-aos="fade-right">
+              <h3>YOLOv8 - Ultralytics' Solution for Object Detection</h3>
+              <ul></ul>
+              <p >
+                The YOLO (You Only Look Once) series of models has become famous in the computer vision world. 
+                YOLO's fame is attributable to its considerable accuracy while maintaining a small model size.
+                YOLOv8 is the newest state-of-the-art YOLO model that can be used for object detection, 
+                image classification, and instance segmentation tasks.
+              </p>
+
+            </div>
+         </div>
+  
+        <div class="row content">
+          <div class="col-md-5" data-aos="fade-right">
+            <img src="static/img/about_pred2.png" class="img-fluid" alt="">
+          </div>
+          <div class="col-md-7 pt-5" data-aos="fade-left">
+            <h3>Development Challenges</h3>
+            <p>Several challenges have been encountered while developing the tool. The main challenge being the performance of the model. By using images where the setting is almost always optimal, 
+              for example perfect lighting, makes the model perform exceptionally well on paper, while possibly lacking in real-life use cases.
+            </p>
+            <p>
+              Another issue has been over- and under-representation of classes and annotations. Smaller fruits and vegetables 
+              are over-represented by their frequent appearances and a high amount of annotations per image.
+            </p>
+          </div>
+        </div>
+  
+        <div class="row content">
+          <div class="col-md-5 order-1 order-md-2" data-aos="fade-left">
+            <img src="static/img/about_pred.png" class="img-fluid" alt="">
+          </div>
+          <div class="col-md-7 pt-5 order-2 order-md-1" data-aos="fade-right">
+            <h3>List of classes</h3>
+            <p class="fst-italic">
+              All classes are available through the drop-down menu below.
+            </p>
+            <ul>
+            <details>
+              <summary style="margin-left:20px;">List of all classes</summary>
+              {% for i in class_list %}
+              <li><i class="bi bi-dot"></i>{{ i }}</li>
+              {% endfor %}
+            </details>
+            </ul>
+          </div>
+        </div>
+  
+      </div>
+    </section>
+
+    <!-- Tools & Experience -->
+    <section id="tools-exp" class="tools-exp ">
+      <div class="container">
+        <div class="container">
+
+          <div class="section-title" data-aos="fade-up">
+            <h2>Tools and Experience</h2>
+            <p>The following tools have been used to design and deploy the TasteScape Project.</p>
+          </div>
+
+        <div class="row">
+          <div class="col-md-6" data-aos="fade-up">
+            <div class="icon-box">
+              <div class="icon"><i class="bi bi-filetype-py" style="color: #ff689b;"></i></div>
+              <h4 class="title"><a>Python Extensions</a></h4>
+              <p class="description">This is a Flask-based web application where all functionalities are powered by Python, 
+                including the model training, while the pages and design elements are implemented separately.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6" data-aos="fade-up">
+            <div class="icon-box">
+              <div class="icon"><i class="bi bi-database" style="color: #e9bf06;"></i></div>
+              <h4 class="title"><a>SQLite Database</a></h4>
+              <p class="description">To store the information gathered from data mining and processing through Web Scraping, 
+                a SQLite database has been created, containing all of the recipe data.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="icon-box">
+              <div class="icon"><i class="bi bi-eye" style="color: #4680ff;"></i></div>
+              <h4 class="title"><a>Computer Vision</a></h4>
+              <p class="description">The tool uses a custom YOLOv8 model, trained on over 40 classes of different fruits and vegetables. 
+                The image dataset contains over 8,000 images.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="icon-box">
+              <div class="icon"><i class="bi bi-exclamation-lg" style="color:#41cf2e;"></i></div>
+              <h4 class="title"><a>Problem Statement</a></h4>
+              <p class="description">By searching the market and challenges we face as a society, the initial idea of this project was created. This project aims to help with a data-driven approach to the problem.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="icon-box">
+              <div class="icon"><i class="bi bi-download" style="color: #e9bf06;"></i></div>
+              <h4 class="title"><a>Web Scraping</a></h4>
+              <p class="description">Recipe and ingredient data have been gathered from New York Times Cooking with Beautifulsoup4. The nature of the website allowed for uncomplicated, structured scraping.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="icon-box">
+              <div class="icon"><i class="bi bi-diagram-3" style="color: #ff689b;"></i></div>
+              <h4 class="title"><a>Data Processing</a></h4>
+              <p class="description">The gathered data has been processed with regular expression patterns and other methods to ensure quality data is present within the database.</p>
+            </div> 
+          </div>
+
+          <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="icon-box">
+              <div class="icon"><i class="bi bi-code-slash" style="color: #41cf2e;"></i></div>
+              <h4 class="title"><a>HTML and CSS</a></h4>
+              <p class="description">Originally, this website was based on a template. Along the way, it has been extensively modified to provide a smooth experience. 
+                The ease of access aims to bring humans and AI closer together.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="icon-box">
+              <div class="icon"><i class="bi bi-hand-index-thumb" style="color:#4680ff;"></i></div>
+              <h4 class="title"><a>Humans and AI</a></h4>
+              <p class="description">The primary goal of this web application is to bridge the gap between end-users and AI, while contributing to society by working on the challenge of food waste.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Problem + Model Summary -->
+    <section id="work-process" class="work-process">
+      <div class="container">
+
+        <div class="section-title" data-aos="fade-up">
+          <h2>Future Directions</h2>
+          <p>What's next?</p>
+        </div>
+
+        <div class="row content"></div>
+
+          <div class="row content">
+            <div class="col-md-5 order-1 order-md-2" data-aos="fade-left">
+              <img src="static/img/about_future2.png" class="img-fluid" alt="">
+            </div>
+            <div class="col-md-7 pt-5 order-2 order-md-1" data-aos="fade-right">
+              <h3>Development Plan</h3>
+              <p class="fst-italic">
+                There are many ideas which may be implemented to further support and work on the food waste challenge within this project. However, development has been halted for now. 
+              </p>
+              <p>
+                The project is idle right now, there are no active plans for now. 
+                Below, considerations are listed for ideas which could be implemented here. These concepts will be picked up once development continues.
+              </p>
+            </div>
+          </div>
+
+          <div class="row content">
+            <div class="col-md-5" data-aos="fade-right">
+              <img src="static/img/about_future.png" class="img-fluid" alt="">
+            </div>
+            <div class="col-md-7 pt-5" data-aos="fade-left">
+              <h3>Feature Considerations</h3>
+              <p>These concepts are being considered for further development of the project.
+              </p>
+              <ul>
+                <li><i class="bi bi-dot"></i>Creation of pages per noteworthy ingredient with limited shelf life.</li>
+                <li><i class="bi bi-dot"></i>Informing users about nutrition facts for these ingredeints.</li>
+                <li><i class="bi bi-dot"></i>Informing users about the correct storage methods of ingredients.</li>
+                <li><i class="bi bi-dot"></i>Creating a shopping list through the application.</li>
+                <li><i class="bi bi-dot"></i>Automated online grocery shopping based on selected recipes.</li>
+                <li><i class="bi bi-dot"></i>Improvement of search mechanic by using tags such as vegan, vegetarian, brunch, lunch.</li>
+                <li><i class="bi bi-dot"></i>Tools to adjust recipes based on dietary restrictions.</li>
+                <li><i class="bi bi-dot"></i>Tools to suggest substitutions when nearly all ingredients are present.</li>
+                <li><i class="bi bi-dot"></i>Implementation of an OCR model to detect canned and packaged ingredients.</li>
+                <li><i class="bi bi-dot"></i>Addition of user profiles, without the 'blog' aspect.</li>
+                <li><i class="bi bi-dot"></i>Ability to upload recipes. Possibly allowing comments on recipes.</li>
+                <li><i class="bi bi-dot"></i>Feature to mark recipes as 'favorite' or 'completed'.</li>
+                <li><i class="bi bi-dot"></i>Feature to add ratings to recipes.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+    </section>
+    {% endblock %}
+
+  </main>
+
+  <!-- Footer + Scripts  -->
+  {% block footer %}
+  {% endblock %}
+
+  {% block scripts %}
+  {% endblock %}
+
+
+</body>
+</html>

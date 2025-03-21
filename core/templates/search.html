@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  {% extends "base.html" %}
+  {% load static %}
+  
+  
+{% block head %}
+<title>Search - TasteScape</title>
+{% endblock %}
+
+<body>
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+  <main id="main">
+
+    <!--  Breadcrumbs  -->
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="breadcrumb-hero">
+        <div class="container">
+          <div class="breadcrumb-hero">
+            <h2>Enter Ingredients</h2>
+            <form style="display: inline;" action="{% url 'submit_search' %}" method="post" name="search">
+              {% csrf_token %}
+              {{ form.search }}
+                <button type="submit"><i class="bi bi-search"></i></button>
+              </form>
+            <p>Results for {{query}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="container"><ol></ol></div>
+    </section>
+
+    <!-- Recipe Section -->
+    <section id="recipes" class="recipes">
+      <div class="container">
+        <div class="row">
+          {% for recipe in results.object_list %}
+          <div class="col-md-6 d-flex align-items-stretch" data-aos="fade-up">
+            <div class="card" style="background-image: url({{recipe.image}})">
+            <a href="recipes/{{ recipe.id }}">
+                <div class="card-body">
+                  <h5 class="card-title">{{ recipe.recipe_title }}</h5>
+                  {% with count=matching_ingredients_counts|first %}
+                  {% if count == 1 %}
+                    <p class="card-text"><i class="bi bi-check"></i>Contains 1 item from your search.</p>
+                  {% elif count > 1 %}
+                    <p class="card-text"><i class="bi bi-check"></i>Contains {{ count }} items from your search.</p>
+                  {% endif %}
+                  {% endwith %}
+                </div>
+              </div>
+            </a>
+          </div>
+        {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <!-- Pagination-->
+    <div class="blog">
+      <nav aria-label="Page navigation" class="blog-pagination">
+        <ul class="pagination justify-content-center">
+          {% if results %}
+            {% if results.has_previous %}
+              <li><a href="{% url 'search' %}?page={{ results.previous_page_number }}&q={{ query }}">Previous</a></li>
+            {% endif %}
+            
+            {% if results.number > 3 %}
+              <li><a href="{% url 'search' %}?page=1&q={{ query }}">1</a></li>
+              <li class="disabled" style="padding: 0px 20px;"><span>...</span></li>
+            {% endif %}
+            
+            {% for page_num in results.paginator.page_range %}
+              {% if page_num > results.number|add:"-3" and page_num < results.number|add:"3" %}
+                <li class="{% if page_num == results.number %}active{% endif %}">
+                  <a href="{% url 'search' %}?page={{ page_num }}&q={{ query }}">{{ page_num }}</a>
+                </li>
+              {% endif %}
+            {% endfor %}
+            
+            {% if results.number < results.paginator.num_pages|add:"-3" %}
+              <li class="disabled" style="padding: 0px 20px;"><span>...</span></li>
+              <li><a href="{% url 'search' %}?page={{ results.paginator.num_pages }}&q={{ query }}">{{ results.paginator.num_pages }}</a></li>
+            {% endif %}
+            
+            {% if results.has_next %}
+              <li><a href="{% url 'search' %}?page={{ results.next_page_number }}&q={{ query }}">Next</a></li>
+            {% endif %}
+          {% endif %}
+        </ul>
+      </nav>
+    </div>
+    
+    {% endblock %}
+  </main>
+
+{% block footer %}
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}
+
+</body>
+</html>
